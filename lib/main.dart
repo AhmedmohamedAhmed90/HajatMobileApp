@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hajat_mobile_app/modules/HomeScreen/home_screen.dart';
+import 'modules/HomeScreen/home_screen.dart';
+import 'modules/Cart/cart_screen.dart';
+import 'modules/Product/product_screen.dart';
 import 'modules/Cart/cubit/cart_cubit.dart';
 import 'modules/Product/cubit/product_cubit.dart';
 
@@ -14,14 +16,34 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CartCubit()..loadCart(), // Cart functionality
+          create: (context) => CartCubit()..loadCart(), 
         ),
         BlocProvider(
-          create: (context) => ProductCubit(), // Product functionality
+          create: (context) => ProductCubit(), 
         ),
       ],
       child: MaterialApp(
-        home: HomeScreen(),
+        title: 'Hajat Mobile App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+
+        initialRoute: '/',
+
+        routes: {
+          '/': (context) => HomeScreen(),
+          '/cart': (context) => CartScreen(),        
+          '/products': (context) => ProductScreen(),  
+        },
+        // Fallback for undefined routes
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (context) => Scaffold(
+              appBar: AppBar(title: Text('404 - Not Found')),
+              body: Center(child: Text('Page not found')),
+            ),
+          );
+        },
       ),
     );
   }
