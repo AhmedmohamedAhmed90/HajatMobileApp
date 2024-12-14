@@ -7,6 +7,7 @@ class ProductScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
+  int? selectedCategoryId; // For category selection
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,8 @@ class ProductScreen extends StatelessWidget {
                           backgroundImage: NetworkImage(product.imageUrl),
                         ),
                         title: Text(product.name),
-                        subtitle: Text('Price: \$${product.price} | Quantity: ${product.quantity}'),
+                        subtitle: Text(
+                            'Price: \$${product.price} | Quantity: ${product.quantity} | Category ID: ${product.categoryId}'),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -39,6 +41,7 @@ class ProductScreen extends StatelessWidget {
                                 nameController.text = product.name;
                                 priceController.text = product.price.toString();
                                 quantityController.text = product.quantity.toString();
+                                selectedCategoryId = product.categoryId; // Initialize
 
                                 showDialog(
                                   context: context,
@@ -49,17 +52,34 @@ class ProductScreen extends StatelessWidget {
                                       children: [
                                         TextField(
                                           controller: nameController,
-                                          decoration: InputDecoration(labelText: 'Name'),
+                                          decoration:
+                                              InputDecoration(labelText: 'Name'),
                                         ),
                                         TextField(
                                           controller: priceController,
-                                          decoration: InputDecoration(labelText: 'Price'),
+                                          decoration:
+                                              InputDecoration(labelText: 'Price'),
                                           keyboardType: TextInputType.number,
                                         ),
                                         TextField(
                                           controller: quantityController,
-                                          decoration: InputDecoration(labelText: 'Quantity'),
+                                          decoration:
+                                              InputDecoration(labelText: 'Quantity'),
                                           keyboardType: TextInputType.number,
+                                        ),
+                                        DropdownButtonFormField<int>(
+                                          value: selectedCategoryId,
+                                          decoration: InputDecoration(
+                                              labelText: 'Category ID'),
+                                          items: [1, 2, 3, 4] // Example category IDs
+                                              .map((id) => DropdownMenuItem(
+                                                    value: id,
+                                                    child: Text('Category $id'),
+                                                  ))
+                                              .toList(),
+                                          onChanged: (value) {
+                                            selectedCategoryId = value;
+                                          },
                                         ),
                                       ],
                                     ),
@@ -69,12 +89,18 @@ class ProductScreen extends StatelessWidget {
                                           final updatedProduct = Product(
                                             id: product.id,
                                             name: nameController.text,
-                                            price: double.parse(priceController.text),
+                                            price: double.parse(
+                                                priceController.text),
                                             imageUrl: product.imageUrl,
-                                            quantity: int.parse(quantityController.text),
+                                            quantity: int.parse(
+                                                quantityController.text),
+                                            categoryId: selectedCategoryId!,
                                           );
 
-                                          context.read<ProductCubit>().editProduct(product.id, updatedProduct);
+                                          context
+                                              .read<ProductCubit>()
+                                              .editProduct(
+                                                  product.id, updatedProduct);
                                           Navigator.pop(context);
                                         },
                                         child: Text('Save'),
@@ -87,7 +113,9 @@ class ProductScreen extends StatelessWidget {
                             IconButton(
                               icon: Icon(Icons.delete),
                               onPressed: () {
-                                context.read<ProductCubit>().deleteProduct(product.id);
+                                context
+                                    .read<ProductCubit>()
+                                    .deleteProduct(product.id);
                               },
                             ),
                           ],
@@ -107,6 +135,7 @@ class ProductScreen extends StatelessWidget {
                 nameController.clear();
                 priceController.clear();
                 quantityController.clear();
+                selectedCategoryId = null;
 
                 showDialog(
                   context: context,
@@ -129,6 +158,18 @@ class ProductScreen extends StatelessWidget {
                           decoration: InputDecoration(labelText: 'Quantity'),
                           keyboardType: TextInputType.number,
                         ),
+                        DropdownButtonFormField<int>(
+                          decoration: InputDecoration(labelText: 'Category ID'),
+                          items: [1, 2, 3, 4] // Example category IDs
+                              .map((id) => DropdownMenuItem(
+                                    value: id,
+                                    child: Text('Category $id'),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            selectedCategoryId = value;
+                          },
+                        ),
                       ],
                     ),
                     actions: [
@@ -139,10 +180,14 @@ class ProductScreen extends StatelessWidget {
                             name: nameController.text,
                             price: double.parse(priceController.text),
                             imageUrl: 'https://via.placeholder.com/150', // Placeholder image
-                            quantity: int.parse(quantityController.text),
+                            quantity:
+                                int.parse(quantityController.text),
+                            categoryId: selectedCategoryId!,
                           );
 
-                          context.read<ProductCubit>().addProduct(newProduct);
+                          context
+                              .read<ProductCubit>()
+                              .addProduct(newProduct);
                           Navigator.pop(context);
                         },
                         child: Text('Add'),

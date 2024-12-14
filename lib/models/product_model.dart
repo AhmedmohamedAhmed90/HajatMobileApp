@@ -4,6 +4,7 @@ class Product {
   final double price;
   final String imageUrl;
   int quantity;
+  final int categoryId; // Added to establish relationship with Category
 
   Product({
     required this.id,
@@ -11,9 +12,9 @@ class Product {
     required this.price,
     required this.imageUrl,
     required this.quantity,
+    required this.categoryId, // Required Category ID
   });
 
-  
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -21,10 +22,10 @@ class Product {
       'price': price,
       'imageUrl': imageUrl,
       'quantity': quantity,
+      'categoryId': categoryId, 
     };
   }
 
- 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       id: json['id'],
@@ -32,6 +33,7 @@ class Product {
       price: json['price'],
       imageUrl: json['imageUrl'],
       quantity: json['quantity'],
+      categoryId: json['categoryId'], 
     );
   }
 }
