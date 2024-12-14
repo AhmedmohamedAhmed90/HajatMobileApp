@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/product_model.dart';
 import 'cubit/product_cubit.dart';
 
-class ProductScreen extends StatelessWidget {
+class AdminProductScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();

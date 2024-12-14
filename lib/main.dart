@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hajat_mobile_app/modules/Product/user_product_screen.dart';
 import 'modules/HomeScreen/home_screen.dart';
 import 'modules/Cart/cart_screen.dart';
 import 'modules/Product/product_screen.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CartCubit()..loadCart(), 
+          create: (context) => CartCubit()..loadCart(), // Cart functionality
         ),
         BlocProvider(
           create: (context) => ProductCubit(), 
@@ -32,8 +33,9 @@ class MyApp extends StatelessWidget {
 
         routes: {
           '/': (context) => HomeScreen(),
-          '/cart': (context) => CartScreen(),        
-          '/products': (context) => ProductScreen(),  
+          '/cart': (context) => CartScreen(),
+          '/products': (context) => AdminProductScreen(), // Admin product screen
+          '/all-products': (context) => UserProductScreen(), // User product screen
         },
         // Fallback for undefined routes
         onUnknownRoute: (settings) {
