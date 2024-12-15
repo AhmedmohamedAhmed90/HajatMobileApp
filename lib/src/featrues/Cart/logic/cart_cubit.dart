@@ -9,6 +9,8 @@ import 'package:get_it/get_it.dart';
 
 
 import 'cart_states.dart';
+// part 'cart_cubit.freezed.dart';
+
 
 
 class CartCubit extends Cubit<CartState> {
@@ -122,7 +124,7 @@ try{
   double getTotalAmount() {
     double total = 0.0;
     for (var item in cart) {
-      //total += item.product.listPrice * item.quantity;
+      total += item.product.listPrice * item.quantity;
     }
     return total;
   }

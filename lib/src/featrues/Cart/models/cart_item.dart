@@ -7,6 +7,8 @@ part 'cart_item.g.dart';
 
 @freezed
 class CartItem with _$CartItem {
+
+  const CartItem._(); // Private constructor for getters
   
   const factory CartItem({
     required Product product,
@@ -16,5 +18,5 @@ class CartItem with _$CartItem {
   factory CartItem.fromJson(Map<String, dynamic> json) => _$CartItemFromJson(json);
 
   
-  //double get totalPrice => product.listPrice * quantity;
+  double get totalPrice => product.listPrice * quantity;
 }

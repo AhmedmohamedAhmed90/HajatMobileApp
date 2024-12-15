@@ -50,6 +50,7 @@ dependencies:
   auto_route: ^9.2.2
   cached_network_image: ^3.4.1
   heroicons: ^0.11.0
+  auto_route_generator: ^9.0.0
 
 dev_dependencies:
   flutter_test:
