@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hajat_mobile_app/modules/Product/user_product_screen.dart';
 import 'modules/HomeScreen/home_screen.dart';
-import 'modules/Cart/cart_screen.dart';
+import 'modules/Cart/ui/cart_screen.dart';
 import 'modules/Product/product_screen.dart';
 import 'modules/Cart/cubit/cart_cubit.dart';
 import 'modules/Product/cubit/product_cubit.dart';

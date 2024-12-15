@@ -1,68 +1,130 @@
 import 'package:bloc/bloc.dart';
+import 'package:hajat_mobile_app/modules/Cart/models/cart_item.dart';
+import 'package:hajat_mobile_app/services/storage/storage_service.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import 'package:get_it/get_it.dart';
+
 
 import '../../../models/product_model.dart';
 import 'cart_states.dart';
 
 
 class CartCubit extends Cubit<CartState> {
-  CartCubit() : super(CartState(cart: [])) {
-    loadCart();
+
+
+    final StorageService storageService =  StorageService();
+     List<CartItem> cart=[];
+
+  CartCubit() : super(CartState.initial()) {
+   getCart();
   }
 
-  void addToCart(Product product) {
-    final existingProduct = state.cart.firstWhere(
-      (p) => p.id == product.id,
-      orElse: () => product,
-    );
 
-    if (existingProduct != product) {
-      existingProduct.quantity += 1;
-    } else {
-      state.cart.add(product);
+
+  Future<void> getCart() async{
+
+    emit(CartState.loading());
+
+    try{
+final cartJson= await storageService.getString('cart');
+ if (cartJson != null) {
+final List<dynamic> cartObjects=jsonDecode(cartJson);
+cart=cartObjects.map((e)=>CartItem.fromJson(e)).toList();
+ }
+
+ emit(CartState.loaded(List.from(cart)));
+
+    }catch(e){
+     emit(CartState.error('Failed to get cart items: $e'));
     }
 
-    saveCart();
-    emit(CartState(cart: List.from(state.cart)));
   }
 
-  void removeFromCart(Product product) {
-    state.cart.removeWhere((p) => p.id == product.id);
-    saveCart();
-    emit(CartState(cart: List.from(state.cart)));
+  Future<void> addToCart(Product product, int quantity) async{
+        emit(CartState.loading());
+        try{
+
+   int index=  cart.indexWhere((element)=>element.product.id==product.id);
+
+   if(index!=-1){
+    cart[index]=  cart[index].copyWith(quantity: cart[index].quantity+quantity);
+    
+   }else{
+     cart.add(CartItem(product: product, quantity: quantity));
+     emit(CartState.loaded(List.from(cart)));
+           await _saveCart();
+   }
+        }catch(e){
+          emit(CartState.error('Failed to add product to cart: $e'));
+        }
   }
 
-  void increaseQuantity(Product product) {
-    final existingProduct = state.cart.firstWhere((p) => p.id == product.id);
-    existingProduct.quantity += 1;
-    saveCart();
-    emit(CartState(cart: List.from(state.cart)));
+  Future<void> _saveCart() async{
+
+   await storageService.setString('cart', jsonEncode(cart));
+
   }
 
-  void decreaseQuantity(Product product) {
-    final existingProduct = state.cart.firstWhere((p) => p.id == product.id);
-    if (existingProduct.quantity > 1) {
-      existingProduct.quantity -= 1;
-      saveCart();
-      emit(CartState(cart: List.from(state.cart)));
+  Future<void> removeFromCart(Product product, {bool removeOne = true})async {
+
+    emit(CartState.loading());
+
+    try{
+      int index=cart.indexWhere((element)=>element.product.id==product.id);
+if (index != -1) {
+if(removeOne&&cart[index].quantity>1 ){
+cart[index]=cart[index].copyWith(quantity: cart[index].quantity-1);
+
+
+}
+else{
+  cart.removeAt(index);
+}
+}
+  emit(CartState.loaded(List.from(cart)));
+   await _saveCart();
+
+    }catch(e){
+      emit(CartState.error('Failed to remove product from cart: $e'));
+    }
+    
+  }
+
+
+Future<void> removeProductFromCart(Product product) async {
+  emit(CartState.loading());
+
+try{
+
+    cart.removeWhere((element)=>element.product.id==product.id);
+     emit(CartState.loaded(List.from(cart)));
+   await _saveCart();
+  
+  
+}catch(e){
+  emit(CartState.error('Failed to remove product from cart: $e'));
+}
+
+}
+
+ Future<void> clearCart() async {
+    try {
+      cart = [];
+      emit(CartState.loaded(List.from(cart)));
+      await _saveCart();
+    } catch (e) {
+      emit(CartState.error('Failed to clear cart: $e'));
     }
   }
 
-  void loadCart() async {
-    final prefs = await SharedPreferences.getInstance();
-    final cartJson = prefs.getString('cart');
-    if (cartJson != null) {
-      final List<dynamic> cartList = json.decode(cartJson);
-      final cart = cartList.map((e) => Product.fromJson(e)).toList();
-      emit(CartState(cart: cart));
+  double getTotalAmount() {
+    double total = 0.0;
+    for (var item in cart) {
+      //total += item.product.listPrice * item.quantity;
     }
+    return total;
   }
 
-  void saveCart() async {
-    final prefs = await SharedPreferences.getInstance();
-    final cartJson = json.encode(state.cart.map((e) => e.toJson()).toList());
-    await prefs.setString('cart', cartJson);
-  }
 }
