@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hajat_mobile_app/modules/Cart/models/cart_item.dart';
+import 'package:hajat_mobile_app/src/featrues/Cart/models/cart_item.dart';
 
 part 'cart_states.freezed.dart';
 

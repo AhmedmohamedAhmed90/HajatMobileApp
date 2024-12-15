@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
-import 'package:hajat_mobile_app/modules/Cart/models/cart_item.dart';
-import 'package:hajat_mobile_app/services/storage/storage_service.dart';
+import 'package:hajat_mobile_app/src/featrues/Cart/models/cart_item.dart';
+import 'package:hajat_mobile_app/src/featrues/products/models/product.dart';
+import 'package:hajat_mobile_app/src/services/storage/storage_service.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:get_it/get_it.dart';
 
 
-import '../../../models/product_model.dart';
 import 'cart_states.dart';
 
 
