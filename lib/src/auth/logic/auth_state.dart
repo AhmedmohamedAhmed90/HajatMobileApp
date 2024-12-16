@@ -1,7 +1,6 @@
-part of 'auth_cubit.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hajat_mobile_app/src/auth/models/session.dart';
+
+part of 'auth_cubit.dart';
 
 @freezed
 class AuthState with _$AuthState {

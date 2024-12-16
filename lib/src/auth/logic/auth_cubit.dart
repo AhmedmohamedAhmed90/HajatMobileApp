@@ -9,6 +9,8 @@ import 'package:hajat_mobile_app/src/services/api/api_service.dart';
 import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 import 'package:hajat_mobile_app/src/services/logging/log.dart';
 import 'package:hajat_mobile_app/src/services/storage/storage_service.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hajat_mobile_app/src/auth/models/session.dart';
 
 
 part 'auth_state.dart';

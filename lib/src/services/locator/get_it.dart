@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:hajat_mobile_app/src/auth/logic/auth_cubit.dart';
 import 'package:hajat_mobile_app/src/domain/repositories/theme_repository.dart';
 import 'package:hajat_mobile_app/src/featrues/Cart/logic/cart_cubit.dart';
 import 'package:hajat_mobile_app/src/services/api/api_service.dart';
