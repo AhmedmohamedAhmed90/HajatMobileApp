@@ -51,6 +51,8 @@ dependencies:
   cached_network_image: ^3.4.1
   heroicons: ^0.11.0
   auto_route_generator: ^9.0.0
+  logger: ^2.5.0
+  pretty_dio_logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:
