@@ -17,6 +17,7 @@ void setupGetIt() {
 
     getIt.registerLazySingleton<CartCubit>(() => CartCubit());
 
+    getIt.registerLazySingleton<AuthCubit>(() => AuthCubit());
 
     getIt.registerLazySingleton<ApiService>(() => ApiService(
       DioFactory(Consts.baseUrl, AppendTokenInterceptor()).create()));
