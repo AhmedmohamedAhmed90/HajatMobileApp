@@ -16,3 +16,4 @@ class Banner with _$Banner {
   factory Banner.fromJson(Map<String, dynamic> json) =>
       _$BannerFromJson(json);
 }
+

@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hajat_mobile_app/src/featrues/banners/models/banner.dart';
- import 'package:hajat_mobile_app/src/services/api/api_service.dart';
+import 'package:hajat_mobile_app/src/services/api/api_service.dart';
 import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 
-part 'banners_state.dart';
-part 'banners_cubit.freezed.dart';
+
+part 'banner_state.dart';
+part 'banner_cubit.freezed.dart';
 
 class BannersCubit extends Cubit<BannersState> {
   final api = getIt<ApiService>();

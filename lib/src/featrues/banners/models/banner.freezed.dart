@@ -23,12 +23,8 @@ mixin _$Banner {
   int get id => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
 
-  /// Serializes this Banner to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Banner
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BannerCopyWith<Banner> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -50,8 +46,6 @@ class _$BannerCopyWithImpl<$Res, $Val extends Banner>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Banner
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,8 +83,6 @@ class __$$BannerImplCopyWithImpl<$Res>
       _$BannerImpl _value, $Res Function(_$BannerImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Banner
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -137,13 +129,11 @@ class _$BannerImpl implements _Banner {
             (identical(other.image, image) || other.image == image));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, image);
 
-  /// Create a copy of Banner
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BannerImplCopyWith<_$BannerImpl> get copyWith =>
@@ -167,11 +157,8 @@ abstract class _Banner implements Banner {
   int get id;
   @override
   String get image;
-
-  /// Create a copy of Banner
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BannerImplCopyWith<_$BannerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

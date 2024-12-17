@@ -1,4 +1,4 @@
-part of 'banners_cubit.dart';
+part of 'banner_cubit.dart';
 
 @freezed
 class BannersState with _$BannersState {
