@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hajat_mobile_app/src/auth/models/user.dart';
+import 'package:hajat_mobile_app/src/featrues/auth/models/user.dart';
 
 part 'session.freezed.dart';
 part 'session.g.dart';

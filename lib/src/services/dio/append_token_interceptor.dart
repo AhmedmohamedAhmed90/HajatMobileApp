@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:hajat_mobile_app/src/Auth/models/session.dart';
+import 'package:hajat_mobile_app/src/featrues/auth/models/session.dart';
 import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 import 'package:hajat_mobile_app/src/services/logging/log.dart';
 import 'package:hajat_mobile_app/src/services/storage/storage_service.dart';
