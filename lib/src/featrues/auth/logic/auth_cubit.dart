@@ -180,38 +180,38 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void setAddress(double latitude, double longitude, String street) async {
-    emit(const AuthState.loading());
-    try {
-      final response = await api.setAddress(latitude, longitude, street);
-      if (response.statusCode != null &&
-          response.statusCode! >= 200 &&
-          response.statusCode! < 300) {
-        final sessionString =
-            await getIt<StorageService>().getString("session");
-        if (sessionString != null) {
-          session = Session.fromJson(jsonDecode(sessionString));
-          User user = session!.user.copyWith(
-            latitude: latitude,
-            longitude: longitude,
-            street: street,
-          );
-          session = session!.copyWith(user: user);
-          await getIt<StorageService>()
-              .setString("session", jsonEncode(session!.toJson()));
-          emit(AuthState.authenticated(session!));
-        }
-      } else {
-        emit(AuthState.error(response.statusMessage ?? "An error occurred"));
-      }
-    } on DioException catch (e) {
-      getIt<Log>().error("dio exception ${e.response}");
-      emit(AuthState.error(e.response?.data["message"] ?? e.toString()));
-    } catch (e) {
-      getIt<Log>().error(e.toString());
-      emit(AuthState.error(e.toString()));
-    }
-  }
+  // void setAddress(double latitude, double longitude, String street) async {
+  //   emit(const AuthState.loading());
+  //   try {
+  //     final response = await api.setAddress(latitude, longitude, street);
+  //     if (response.statusCode != null &&
+  //         response.statusCode! >= 200 &&
+  //         response.statusCode! < 300) {
+  //       final sessionString =
+  //           await getIt<StorageService>().getString("session");
+  //       if (sessionString != null) {
+  //         session = Session.fromJson(jsonDecode(sessionString));
+  //         User user = session!.user.copyWith(
+  //           latitude: latitude,
+  //           longitude: longitude,
+  //           street: street,
+  //         );
+  //         session = session!.copyWith(user: user);
+  //         await getIt<StorageService>()
+  //             .setString("session", jsonEncode(session!.toJson()));
+  //         emit(AuthState.authenticated(session!));
+  //       }
+  //     } else {
+  //       emit(AuthState.error(response.statusMessage ?? "An error occurred"));
+  //     }
+  //   } on DioException catch (e) {
+  //     getIt<Log>().error("dio exception ${e.response}");
+  //     emit(AuthState.error(e.response?.data["message"] ?? e.toString()));
+  //   } catch (e) {
+  //     getIt<Log>().error(e.toString());
+  //     emit(AuthState.error(e.toString()));
+  //   }
+  // }
 
   void updateUser(User updatedUser)async {
     emit(const AuthState.loading());
