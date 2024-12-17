@@ -131,7 +131,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         controller: phoneController,
                         maxLength: 10,
                         decoration: InputDecoration(
-                          hintText: '09XXXXXXXX',
+                          hintText: '012XXXXXXXX',
                           labelText: 'Phone',
                           border: OutlineInputBorder(
                             borderRadius:

@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hajat_mobile_app/src/featrues/auth/ui/account_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/auth/ui/onboarding_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/auth/ui/auth_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/auth/ui/reset_password_screen.dart';
-import 'package:hajat_mobile_app/src/featrues/common/ui/error_screen.dart'; 
+import 'package:hajat_mobile_app/src/featrues/common/ui/error_screen.dart';
+import 'package:hajat_mobile_app/src/featrues/auth/ui/add_address_screen.dart'; 
+
 
 part 'router.gr.dart';
 
@@ -23,5 +26,11 @@ class AppRouter extends RootStackRouter {
         //   ],
         // ),
         AutoRoute(page: ResetPasswordRoute.page),
+
+        //AutoRoute(page: WalletRoute.page),
+
+        AutoRoute(page: AddAddressRoute.page),
+
+
       ];
 }
