@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hajat_mobile_app/src/featrues/auth/logic/auth_cubit.dart';
 import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 import 'package:hajat_mobile_app/src/utilities/consts.dart';
+import 'package:hajat_mobile_app/src/utilities/router.dart';
 
 
 @RoutePage()
