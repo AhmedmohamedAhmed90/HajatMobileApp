@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Consts{
 
 
-  static String baseUrl = "https://hajat.com.ly";
+  static String baseUrl = "https://miu.hajat.com.ly/";
 
   // Gaps
   static const gapXS = SizedBox(height: 4, width: 4);
