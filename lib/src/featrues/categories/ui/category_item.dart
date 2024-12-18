@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hajat/src/features/categories/models/category.dart';
-import 'package:hajat/src/utilities/consts.dart';
+import 'package:hajat_mobile_app/src/featrues/categories/models/category.dart';
+import 'package:hajat_mobile_app/src/utilities/consts.dart';
+import 'package:hajat_mobile_app/src/utilities/router.dart';
 
-import '../../../utilities/router.dart';
+
+
 
 class CategoryItem extends StatelessWidget {
   final Category category;

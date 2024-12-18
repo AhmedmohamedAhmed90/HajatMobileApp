@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hajat/src/features/categories/logic/cubit/sub_categories_cubit.dart';
-import 'package:hajat/src/features/categories/models/category.dart';
-import 'package:hajat/src/features/common/ui/error_screen.dart';
-import 'package:hajat/src/utilities/common.dart';
+import 'package:hajat_mobile_app/src/featrues/categories/logic/cubit/sub_categories_cubit.dart';
+import 'package:hajat_mobile_app/src/featrues/categories/models/category.dart';
+import 'package:hajat_mobile_app/src/featrues/products/models/product.dart';
+
 
 import '../../app/ui/widgets/error_card.dart';
-import '../../products/ui/products.dart';
+
 
 @RoutePage()
 class CategoryDetailsScreen extends StatefulWidget {
@@ -19,13 +19,13 @@ class CategoryDetailsScreen extends StatefulWidget {
 }
 
 class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
-  late Products products;
+  late Product products;
 
   @override
   void initState() {
     // TODO: implement initState
-    products = Products(
-      categoryId: widget.category.id,
+    products = Product(
+      category: widget.category.id,
     );
     super.initState();
   }

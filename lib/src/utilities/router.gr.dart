@@ -203,3 +203,93 @@ class ResetPasswordRouteArgs {
     return 'ResetPasswordRouteArgs{key: $key, phone: $phone}';
   }
 }
+
+class CategoryDetailsRoute extends PageRouteInfo<CategoryDetailsRouteArgs> {
+  CategoryDetailsRoute({
+    Key? key,
+    required Category category,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CategoryDetailsRoute.name,
+          args: CategoryDetailsRouteArgs(
+            key: key,
+            category: category,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoryDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CategoryDetailsRouteArgs>();
+      return CategoryDetailsScreen(
+        key: args.key,
+        category: args.category,
+      );
+    },
+  );
+}
+
+
+class CategoryDetailsRouteArgs {
+  const CategoryDetailsRouteArgs({
+    this.key,
+    required this.category,
+  });
+
+  final Key? key;
+
+  final Category category;
+
+  @override
+  String toString() {
+    return 'CategoryDetailsRouteArgs{key: $key, category: $category}';
+  }
+}
+
+class ProductDetailsRoute extends PageRouteInfo<ProductDetailsRouteArgs> {
+  ProductDetailsRoute({
+    Key? key,
+    required Product product,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProductDetailsRoute.name,
+          args: ProductDetailsRouteArgs(
+            key: key,
+            product: product,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProductDetailsRouteArgs>();
+      return ProductDetailsScreen(
+        key: args.key,
+        product: args.product,
+      );
+    },
+  );
+}
+
+
+class ProductDetailsRouteArgs {
+  const ProductDetailsRouteArgs({
+    this.key,
+    required this.product,
+  });
+
+  final Key? key;
+
+  final Product product;
+
+  @override
+  String toString() {
+    return 'ProductDetailsRouteArgs{key: $key, product: $product}';
+  }
+}

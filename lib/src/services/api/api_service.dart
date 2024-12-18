@@ -326,6 +326,41 @@ Future<Response> getSubCategories(String id) async {
     }
   }
 
+Future<Response> getProducts(int? categoryId, int? brandId, String? q) async {
+    // build the query string based on the parameters
+    String url = '/api/products';
+    if (categoryId != null) {
+      url += '?category=$categoryId';
+    }
+    if (brandId != null) {
+      url += '?brand=$brandId';
+    }
+    if (q != null) {
+      url += '?search=$q';
+    }
+
+    try {
+      var response = await dio.request(
+        url,
+        options: Options(
+          method: 'GET',
+        ),
+      );
+
+      if (response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300) {
+        getIt<Log>().info(json.encode(response.data));
+      } else {
+        getIt<Log>().warn(response.data);
+        throw Exception(response.data);
+      }
+      return response;
+    } catch (e) {
+      getIt<Log>().error(e.toString());
+      rethrow;
+    }
+  }
 
   
 }
