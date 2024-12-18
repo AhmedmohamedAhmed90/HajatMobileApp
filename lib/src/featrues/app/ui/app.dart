@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       bloc: ThemeCubit.instance,
       builder: (context, state) {
         return MaterialApp.router(
+          routerConfig: _appRouter.config(),
           theme: Themes.lightTheme,
           darkTheme: Themes.darkTheme,
           themeMode: state.themeMode,
@@ -24,8 +25,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

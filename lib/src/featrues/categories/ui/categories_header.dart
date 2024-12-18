@@ -10,7 +10,6 @@ import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 import 'package:hajat_mobile_app/src/utilities/consts.dart';
 import 'package:shimmer/shimmer.dart';
 
-
 class CategoriesHeader extends StatelessWidget {
   const CategoriesHeader({super.key});
 
@@ -50,7 +49,7 @@ class CategoriesHeader extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.65,
             child: ErrorrWidget(
               message: value.message,
-              title: "An error occurred", // Removed getApplocalizations(context)
+              title: "An error occurred",
               onRetry: () {
                 getIt<CategoriesCubit>().loadCategories();
                 getIt<BannersCubit>().getBanners();

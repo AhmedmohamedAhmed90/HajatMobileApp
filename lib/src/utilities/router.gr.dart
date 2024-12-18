@@ -327,6 +327,71 @@ class OnboardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OrderDetailsScreen]
+class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
+  OrderDetailsRoute({
+    Key? key,
+    required Order order,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OrderDetailsRoute.name,
+          args: OrderDetailsRouteArgs(
+            key: key,
+            order: order,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OrderDetailsRouteArgs>();
+      return OrderDetailsScreen(
+        key: args.key,
+        order: args.order,
+      );
+    },
+  );
+}
+
+class OrderDetailsRouteArgs {
+  const OrderDetailsRouteArgs({
+    this.key,
+    required this.order,
+  });
+
+  final Key? key;
+
+  final Order order;
+
+  @override
+  String toString() {
+    return 'OrderDetailsRouteArgs{key: $key, order: $order}';
+  }
+}
+
+/// generated route for
+/// [OrdersScreen]
+class OrdersRoute extends PageRouteInfo<void> {
+  const OrdersRoute({List<PageRouteInfo>? children})
+      : super(
+          OrdersRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OrdersRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OrdersScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ProductDetailsScreen]
 class ProductDetailsRoute extends PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({

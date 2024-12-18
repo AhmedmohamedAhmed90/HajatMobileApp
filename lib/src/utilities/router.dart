@@ -14,10 +14,11 @@ import 'package:hajat_mobile_app/src/featrues/home/ui/home_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/home/ui/tabs/coupons.dart';
 import 'package:hajat_mobile_app/src/featrues/home/ui/tabs/explore.dart';
 import 'package:hajat_mobile_app/src/featrues/home/ui/tabs/more.dart';
+import 'package:hajat_mobile_app/src/featrues/orders/models/order.dart';
+import 'package:hajat_mobile_app/src/featrues/orders/ui/order_details_screen.dart';
+import 'package:hajat_mobile_app/src/featrues/orders/ui/orders_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/products/models/product.dart';
-import 'package:hajat_mobile_app/src/featrues/products/ui/product_details_screen.dart'; 
-import 'package:hajat_mobile_app/src/featrues/Cart/ui/cart_screen.dart';
-
+import 'package:hajat_mobile_app/src/featrues/products/ui/product_details_screen.dart';
 
 part 'router.gr.dart';
 
@@ -25,13 +26,17 @@ part 'router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-       AutoRoute(
+        AutoRoute(
           page: MyHomeRoute.page,
           initial: true,
           children: [
             AutoRoute(
               page: ExploreRoute.page,
               path: 'explore',
+            ),
+            AutoRoute(
+              page: OrdersRoute.page,
+              path: 'orders',
             ),
             // AutoRoute(
             //   page: CartRoute.page,
@@ -41,21 +46,17 @@ class AppRouter extends RootStackRouter {
               page: AccountRoute.page,
               path: 'account',
             ),
-        
           ],
         ),
         AutoRoute(
           page: CategoryDetailsRoute.page,
         ),
-       
         AutoRoute(page: ProductDetailsRoute.page),
         AutoRoute(page: ErrorRoute.page),
         AutoRoute(page: BrandsDetailsRoute.page),
         AutoRoute(page: AddAddressRoute.page),
         AutoRoute(page: OnboardingRoute.page),
         AutoRoute(page: ResetPasswordRoute.page),
+        AutoRoute(page: OrderDetailsRoute.page),
       ];
 }
-
-
-    

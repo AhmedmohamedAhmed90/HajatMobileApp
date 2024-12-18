@@ -315,8 +315,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                       ),
                                       TextButton(
                                         onPressed: () {
-                                          context.router.push(
-                                              ResetPasswordRoute(
+                                          context.router
+                                              .push(ResetPasswordRoute(
                                             phone: phoneController.text
                                                 .replaceFirst("0", "20"),
                                           ));

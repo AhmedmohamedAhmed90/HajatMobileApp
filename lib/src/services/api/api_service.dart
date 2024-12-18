@@ -9,9 +9,6 @@ class ApiService {
 
   ApiService(this.dio);
 
-
-
-  
   Future<Response> signUp(String firstName, String lastName, String mobile,
       String passwords, int type) async {
     var data = json.encode({
@@ -76,8 +73,7 @@ class ApiService {
     }
   }
 
-
-   // set address /api/users/location takes (latitude, longitude, street)
+  // set address /api/users/location takes (latitude, longitude, street)
   Future<Response> setAddress(
       double latitude, double longitude, String street) async {
     var data = json.encode({
@@ -163,8 +159,6 @@ class ApiService {
     }
   }
 
-
-  
   // request reset password otp, takes (phone), request-reset-otp
 
   Future<Response> requestResetPasswordOtp(String phone) async {
@@ -251,8 +245,6 @@ class ApiService {
     }
   }
 
-  
-
   // get all banners, /api/banners
   Future<Response> getBanners() async {
     try {
@@ -266,17 +258,18 @@ class ApiService {
       if (response.statusCode != null &&
           response.statusCode! >= 200 &&
           response.statusCode! < 300) {
-       // getIt<Log>().info(json.encode(response.data));
+        // getIt<Log>().info(json.encode(response.data));
       } else {
         //getIt<Log>().warn("ELSE" + response.data);
         throw Exception(response.data);
       }
       return response;
     } catch (e) {
-     // getIt<Log>().error("CATCH$e");
+      // getIt<Log>().error("CATCH$e");
       rethrow;
     }
   }
+
   Future<Response> getCategories() async {
     try {
       var response = await dio.request(
@@ -301,7 +294,7 @@ class ApiService {
     }
   }
 
-Future<Response> getSubCategories(String id) async {
+  Future<Response> getSubCategories(String id) async {
     try {
       var response = await dio.request(
         '/api/categories/$id',
@@ -325,7 +318,7 @@ Future<Response> getSubCategories(String id) async {
     }
   }
 
-Future<Response> getProducts(int? categoryId, int? brandId, String? q) async {
+  Future<Response> getProducts(int? categoryId, int? brandId, String? q) async {
     // build the query string based on the parameters
     String url = '/api/products';
     if (categoryId != null) {
@@ -361,7 +354,7 @@ Future<Response> getProducts(int? categoryId, int? brandId, String? q) async {
     }
   }
 
-   Future<Response> getBrands() async {
+  Future<Response> getBrands() async {
     try {
       var response = await dio.request(
         '/api/brands',
@@ -408,5 +401,52 @@ Future<Response> getProducts(int? categoryId, int? brandId, String? q) async {
       rethrow;
     }
   }
-  
+
+  Future<Response> getOrders() async {
+    try {
+      var response = await dio.request(
+        '/api/orders',
+        options: Options(
+          method: 'GET',
+        ),
+      );
+
+      if (response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300) {
+        getIt<Log>().info(json.encode(response.data));
+      } else {
+        getIt<Log>().warn(response.data);
+        throw Exception(response.data);
+      }
+      return response;
+    } catch (e) {
+      getIt<Log>().error("CATCH$e");
+      rethrow;
+    }
+  }
+
+  Future<Response> getOrderDetails(int id) async {
+    try {
+      var response = await dio.request(
+        '/api/orders/$id',
+        options: Options(
+          method: 'GET',
+        ),
+      );
+
+      if (response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300) {
+        getIt<Log>().info(json.encode(response.data));
+      } else {
+        getIt<Log>().warn(response.data);
+        throw Exception(response.data);
+      }
+      return response;
+    } catch (e) {
+      getIt<Log>().error("CATCH$e");
+      rethrow;
+    }
+  }
 }
