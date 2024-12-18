@@ -94,6 +94,117 @@ class AuthRouteArgs {
 }
 
 /// generated route for
+/// [BrandsDetailsScreen]
+class BrandsDetailsRoute extends PageRouteInfo<BrandsDetailsRouteArgs> {
+  BrandsDetailsRoute({
+    Key? key,
+    required Brand brand,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BrandsDetailsRoute.name,
+          args: BrandsDetailsRouteArgs(
+            key: key,
+            brand: brand,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'BrandsDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BrandsDetailsRouteArgs>();
+      return BrandsDetailsScreen(
+        key: args.key,
+        brand: args.brand,
+      );
+    },
+  );
+}
+
+class BrandsDetailsRouteArgs {
+  const BrandsDetailsRouteArgs({
+    this.key,
+    required this.brand,
+  });
+
+  final Key? key;
+
+  final Brand brand;
+
+  @override
+  String toString() {
+    return 'BrandsDetailsRouteArgs{key: $key, brand: $brand}';
+  }
+}
+
+/// generated route for
+/// [CategoryDetailsScreen]
+class CategoryDetailsRoute extends PageRouteInfo<CategoryDetailsRouteArgs> {
+  CategoryDetailsRoute({
+    Key? key,
+    required Category category,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CategoryDetailsRoute.name,
+          args: CategoryDetailsRouteArgs(
+            key: key,
+            category: category,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoryDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CategoryDetailsRouteArgs>();
+      return CategoryDetailsScreen(
+        key: args.key,
+        category: args.category,
+      );
+    },
+  );
+}
+
+class CategoryDetailsRouteArgs {
+  const CategoryDetailsRouteArgs({
+    this.key,
+    required this.category,
+  });
+
+  final Key? key;
+
+  final Category category;
+
+  @override
+  String toString() {
+    return 'CategoryDetailsRouteArgs{key: $key, category: $category}';
+  }
+}
+
+/// generated route for
+/// [CouponsScreen]
+class CouponsRoute extends PageRouteInfo<void> {
+  const CouponsRoute({List<PageRouteInfo>? children})
+      : super(
+          CouponsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CouponsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CouponsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ErrorScreen]
 class ErrorRoute extends PageRouteInfo<ErrorRouteArgs> {
   ErrorRoute({
@@ -140,6 +251,63 @@ class ErrorRouteArgs {
 }
 
 /// generated route for
+/// [ExploreScreen]
+class ExploreRoute extends PageRouteInfo<void> {
+  const ExploreRoute({List<PageRouteInfo>? children})
+      : super(
+          ExploreRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ExploreRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ExploreScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [MoreScreen]
+class MoreRoute extends PageRouteInfo<void> {
+  const MoreRoute({List<PageRouteInfo>? children})
+      : super(
+          MoreRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MoreRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MoreScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [MyHomePage]
+class MyHomeRoute extends PageRouteInfo<void> {
+  const MyHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          MyHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MyHomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MyHomePage();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingScreen]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})
@@ -156,6 +324,52 @@ class OnboardingRoute extends PageRouteInfo<void> {
       return const OnboardingScreen();
     },
   );
+}
+
+/// generated route for
+/// [ProductDetailsScreen]
+class ProductDetailsRoute extends PageRouteInfo<ProductDetailsRouteArgs> {
+  ProductDetailsRoute({
+    Key? key,
+    required Product product,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProductDetailsRoute.name,
+          args: ProductDetailsRouteArgs(
+            key: key,
+            product: product,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProductDetailsRouteArgs>();
+      return ProductDetailsScreen(
+        key: args.key,
+        product: args.product,
+      );
+    },
+  );
+}
+
+class ProductDetailsRouteArgs {
+  const ProductDetailsRouteArgs({
+    this.key,
+    required this.product,
+  });
+
+  final Key? key;
+
+  final Product product;
+
+  @override
+  String toString() {
+    return 'ProductDetailsRouteArgs{key: $key, product: $product}';
+  }
 }
 
 /// generated route for
@@ -201,139 +415,5 @@ class ResetPasswordRouteArgs {
   @override
   String toString() {
     return 'ResetPasswordRouteArgs{key: $key, phone: $phone}';
-  }
-}
-
-class CategoryDetailsRoute extends PageRouteInfo<CategoryDetailsRouteArgs> {
-  CategoryDetailsRoute({
-    Key? key,
-    required Category category,
-    List<PageRouteInfo>? children,
-  }) : super(
-          CategoryDetailsRoute.name,
-          args: CategoryDetailsRouteArgs(
-            key: key,
-            category: category,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'CategoryDetailsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<CategoryDetailsRouteArgs>();
-      return CategoryDetailsScreen(
-        key: args.key,
-        category: args.category,
-      );
-    },
-  );
-}
-
-
-class CategoryDetailsRouteArgs {
-  const CategoryDetailsRouteArgs({
-    this.key,
-    required this.category,
-  });
-
-  final Key? key;
-
-  final Category category;
-
-  @override
-  String toString() {
-    return 'CategoryDetailsRouteArgs{key: $key, category: $category}';
-  }
-}
-
-class ProductDetailsRoute extends PageRouteInfo<ProductDetailsRouteArgs> {
-  ProductDetailsRoute({
-    Key? key,
-    required Product product,
-    List<PageRouteInfo>? children,
-  }) : super(
-          ProductDetailsRoute.name,
-          args: ProductDetailsRouteArgs(
-            key: key,
-            product: product,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'ProductDetailsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<ProductDetailsRouteArgs>();
-      return ProductDetailsScreen(
-        key: args.key,
-        product: args.product,
-      );
-    },
-  );
-}
-
-
-class ProductDetailsRouteArgs {
-  const ProductDetailsRouteArgs({
-    this.key,
-    required this.product,
-  });
-
-  final Key? key;
-
-  final Product product;
-
-  @override
-  String toString() {
-    return 'ProductDetailsRouteArgs{key: $key, product: $product}';
-  }
-}
-
-class BrandsDetailsRoute extends PageRouteInfo<BrandsDetailsRouteArgs> {
-  BrandsDetailsRoute({
-    Key? key,
-    required Brand brand,
-    List<PageRouteInfo>? children,
-  }) : super(
-          BrandsDetailsRoute.name,
-          args: BrandsDetailsRouteArgs(
-            key: key,
-            brand: brand,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'BrandsDetailsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<BrandsDetailsRouteArgs>();
-      return BrandsDetailsScreen(
-        key: args.key,
-        brand: args.brand,
-      );
-    },
-  );
-}
-
-class BrandsDetailsRouteArgs {
-  const BrandsDetailsRouteArgs({
-    this.key,
-    required this.brand,
-  });
-
-  final Key? key;
-
-  final Brand brand;
-
-  @override
-  String toString() {
-    return 'BrandsDetailsRouteArgs{key: $key, brand: $brand}';
   }
 }
