@@ -278,6 +278,54 @@ class ApiService {
       rethrow;
     }
   }
+  Future<Response> getCategories() async {
+    try {
+      var response = await dio.request(
+        '/api/categories',
+        options: Options(
+          method: 'GET',
+        ),
+      );
+
+      if (response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300) {
+        getIt<Log>().info(json.encode(response.data));
+      } else {
+        getIt<Log>().warn(response.data);
+        throw Exception(response.data);
+      }
+      return response;
+    } catch (e) {
+      getIt<Log>().error(e.toString());
+      rethrow;
+    }
+  }
+
+Future<Response> getSubCategories(String id) async {
+    try {
+      var response = await dio.request(
+        '/api/categories/$id',
+        options: Options(
+          method: 'GET',
+        ),
+      );
+
+      if (response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300) {
+        getIt<Log>().info(json.encode(response.data));
+      } else {
+        getIt<Log>().warn(response.data);
+        throw Exception(response.data);
+      }
+      return response;
+    } catch (e) {
+      getIt<Log>().error(e.toString());
+      rethrow;
+    }
+  }
+
 
   
 }
