@@ -5,10 +5,6 @@ import 'package:hajat_mobile_app/src/featrues/products/logic/cubit/products_cubi
 import 'package:hajat_mobile_app/src/featrues/products/ui/product_card.dart';
 import 'package:hajat_mobile_app/src/utilities/consts.dart';
 
-
-
-
-
 class Products extends StatefulWidget {
   Products({
     super.key,
@@ -54,7 +50,7 @@ class _ProductsState extends State<Products> {
                     color: Colors.grey,
                   ),
                   Text(
-                    getApplocalizations(context)!.noData,
+                    'No data available', // Replace with your preferred string
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ],
@@ -62,7 +58,6 @@ class _ProductsState extends State<Products> {
             }
             return GridView.count(
               padding: Consts.paddingM,
-              
               crossAxisSpacing: 14,
               mainAxisSpacing: 14,
               crossAxisCount: 2,

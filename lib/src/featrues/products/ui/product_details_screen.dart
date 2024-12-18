@@ -9,8 +9,6 @@ import 'package:hajat_mobile_app/src/utilities/consts.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 
-
-
 @RoutePage()
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key, required this.product});
@@ -96,8 +94,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               ),
                               child: Text(
                                 widget.product.qtyAvailable == 0
-                                    ? getApplocalizations(context)!.outOfStock
-                                    : getApplocalizations(context)!.inStock,
+                                    ? 'Out of Stock'
+                                    : 'In Stock',
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleSmall!
@@ -110,10 +108,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ],
                         ),
 
-
                         Consts.gapM,
 
-                        // Consts.gapM,
                         Wrap(
                           spacing: 8,
                           children: [
@@ -124,15 +120,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             if (widget.product.qtyAvailable != 0)
                               Chip(
                                   label: Text(
-                                      "${getApplocalizations(context)!.available} ${widget.product.qtyAvailable} ${getApplocalizations(context)!.piece}")),
-                            // Chip(label: Text(widget.product.uomId)),
+                                      "Available: ${widget.product.qtyAvailable} pieces")),
                           ],
                         ),
-
-                        // Text(
-                        //   "${widget.product.listPrice.toStringAsFixed(2)} ${getApplocalizations(context)!.curranecy}",
-                        //   style: Theme.of(context).textTheme.titleLarge,
-                        // ),
                       ],
                     ),
                   ),
@@ -195,7 +185,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                         // total price
                         Text(
-                          "${(widget.product.listPrice * quantity).toStringAsFixed(2)} ${getApplocalizations(context)!.curranecy}",
+                          "${(widget.product.listPrice * quantity).toStringAsFixed(2)} USD",
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ],
@@ -204,7 +194,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: FilledButton(
-                        child: Text(getApplocalizations(context)!.addCart),
+                        child: const Text('Add to Cart'),
                         onPressed: () {
                           getIt<CartCubit>()
                               .addToCart(widget.product, quantity);

@@ -7,7 +7,6 @@ import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 import 'package:hajat_mobile_app/src/utilities/consts.dart';
 import 'package:hajat_mobile_app/src/utilities/router.dart';
 
-
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product});
   final Product product;
@@ -33,14 +32,12 @@ class ProductCard extends StatelessWidget {
           ],
         ),
         child: SizedBox(
-          // width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Container(
                   decoration: const BoxDecoration(
-                    // color: Colors.red,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(Consts.borderRadiusM),
                       topRight: Radius.circular(Consts.borderRadiusM),
@@ -72,10 +69,6 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // Expanded(
-              // flex: 9,
-              // width: double.infinity,
               Padding(
                 padding: Consts.paddingHM,
                 child: Column(
@@ -89,9 +82,8 @@ class ProductCard extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    // Consts.gapS,
                     Text(
-                      "${product.listPrice.toStringAsFixed(2)} ${getApplocalizations(context)!.curranecy}",
+                      "${product.listPrice.toStringAsFixed(2)} USD", // Static currency string
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                             color: Theme.of(context)
                                 .colorScheme
@@ -108,36 +100,25 @@ class ProductCard extends StatelessWidget {
                           getIt<CartCubit>()
                               .addToCart(product, 1)
                               .then((value) {
-                            // Fluttertoast.showToast(
-                            //
-                            // );
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  getApplocalizations(context)!.addedToCart,
-                                ),
-                                // backgroundColor: Colors.grey,
-                                // duration: const Duration(seconds: 2),
+                              const SnackBar(
+                                content: Text("Item added to cart"), // Static message
                               ),
                             );
-                            
                           });
                         },
-                        label: Text(
-                          getApplocalizations(context)!.addCart,
+                        label: const Text(
+                          "Add to Cart", // Static text
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        icon: const Icon(
-                          Icons.add,
-                        ),
+                        icon: const Icon(Icons.add),
                       ),
                     ),
                     Consts.gapS,
                   ],
                 ),
               ),
-              // ),
             ],
           ),
         ),

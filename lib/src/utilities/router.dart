@@ -4,6 +4,8 @@ import 'package:hajat_mobile_app/src/featrues/auth/ui/account_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/auth/ui/onboarding_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/auth/ui/auth_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/auth/ui/reset_password_screen.dart';
+import 'package:hajat_mobile_app/src/featrues/brands/models/brand.dart';
+import 'package:hajat_mobile_app/src/featrues/brands/ui/brands_details_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/categories/models/category.dart';
 import 'package:hajat_mobile_app/src/featrues/categories/ui/category_details_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/common/ui/error_screen.dart';

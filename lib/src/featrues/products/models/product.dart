@@ -1,6 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hajat/src/features/brands/models/brand.dart';
+import 'package:hajat_mobile_app/src/featrues/brands/models/brand.dart';
 
 import '../../categories/models/category.dart';
 

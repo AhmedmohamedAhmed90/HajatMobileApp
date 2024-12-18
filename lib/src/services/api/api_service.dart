@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 import 'package:hajat_mobile_app/src/services/logging/log.dart';
-// import 'package:hajat/src/services/log.dart'; logger to be implemented
 
 class ApiService {
   Dio dio;
@@ -362,5 +361,52 @@ Future<Response> getProducts(int? categoryId, int? brandId, String? q) async {
     }
   }
 
+   Future<Response> getBrands() async {
+    try {
+      var response = await dio.request(
+        '/api/brands',
+        options: Options(
+          method: 'GET',
+        ),
+      );
+
+      if (response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300) {
+        getIt<Log>().info(json.encode(response.data));
+      } else {
+        getIt<Log>().warn(response.data);
+        throw Exception(response.data);
+      }
+      return response;
+    } catch (e) {
+      getIt<Log>().error(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<Response> getBrandProducts(int brandId) async {
+    try {
+      var response = await dio.request(
+        '/api/brands/$brandId',
+        options: Options(
+          method: 'GET',
+        ),
+      );
+
+      if (response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300) {
+        getIt<Log>().info(json.encode(response.data));
+      } else {
+        getIt<Log>().warn(response.data);
+        throw Exception(response.data);
+      }
+      return response;
+    } catch (e) {
+      getIt<Log>().error(e.toString());
+      rethrow;
+    }
+  }
   
 }

@@ -293,3 +293,47 @@ class ProductDetailsRouteArgs {
     return 'ProductDetailsRouteArgs{key: $key, product: $product}';
   }
 }
+
+class BrandsDetailsRoute extends PageRouteInfo<BrandsDetailsRouteArgs> {
+  BrandsDetailsRoute({
+    Key? key,
+    required Brand brand,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BrandsDetailsRoute.name,
+          args: BrandsDetailsRouteArgs(
+            key: key,
+            brand: brand,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'BrandsDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BrandsDetailsRouteArgs>();
+      return BrandsDetailsScreen(
+        key: args.key,
+        brand: args.brand,
+      );
+    },
+  );
+}
+
+class BrandsDetailsRouteArgs {
+  const BrandsDetailsRouteArgs({
+    this.key,
+    required this.brand,
+  });
+
+  final Key? key;
+
+  final Brand brand;
+
+  @override
+  String toString() {
+    return 'BrandsDetailsRouteArgs{key: $key, brand: $brand}';
+  }
+}

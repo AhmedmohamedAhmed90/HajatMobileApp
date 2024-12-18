@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hajat_mobile_app/src/featrues/categories/logic/cubit/sub_categories_cubit.dart';
 import 'package:hajat_mobile_app/src/featrues/categories/models/category.dart';
-import 'package:hajat_mobile_app/src/featrues/products/models/product.dart';
-
+import 'package:hajat_mobile_app/src/featrues/products/ui/products.dart';
 
 import '../../app/ui/widgets/error_card.dart';
-
 
 @RoutePage()
 class CategoryDetailsScreen extends StatefulWidget {
@@ -19,13 +17,12 @@ class CategoryDetailsScreen extends StatefulWidget {
 }
 
 class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
-  late Product products;
+  late Products products;
 
   @override
   void initState() {
-    // TODO: implement initState
-    products = Product(
-      category: widget.category.id,
+    products = Products(
+       categoryId: widget.category.id,
     );
     super.initState();
   }
@@ -48,8 +45,8 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                       // labelPadding: const EdgeInsets.symmetric(horizontal: 0),
                       tabAlignment: TabAlignment.start,
                       tabs: [
-                        Tab(
-                          text: getApplocalizations(context)!.all,
+                        const Tab(
+                          text: 'All', // Replaced with static text 'All'
                         ),
                         ...categories.map((e) => Tab(text: e.name)).toList(),
                       ],
