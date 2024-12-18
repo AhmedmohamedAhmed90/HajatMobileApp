@@ -201,7 +201,6 @@ class _AuthScreenState extends State<AuthScreen> {
                                           ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
-                                          print('Privacy Policy');
                                           launchURL(
                                               'https://odoo.hajat.com.ly/privacy');
                                         },
@@ -224,7 +223,6 @@ class _AuthScreenState extends State<AuthScreen> {
                                           ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
-                                          print('Terms and Conditions');
                                           launchURL(
                                               'https://odoo.hajat.com.ly/terms');
                                         },
@@ -285,14 +283,14 @@ class _AuthScreenState extends State<AuthScreen> {
                             if (phoneController.text.isNotEmpty) {
                               context.router.push(ResetPasswordRoute(
                                 phone: phoneController.text
-                                    .replaceFirst("0", "20"),
+                                    .replaceFirst("0", "218"),
                               ));
                             } else {
                               showDialog(
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                    title: Text('Enter Phone Number'),
+                                    title: const Text('Enter Phone Number'),
                                     content: TextFormField(
                                       keyboardType: TextInputType.phone,
                                       controller: phoneController,
@@ -321,7 +319,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                                 .replaceFirst("0", "20"),
                                           ));
                                         },
-                                        child: Text('OK'),
+                                        child: const Text('OK'),
                                       ),
                                     ],
                                   );

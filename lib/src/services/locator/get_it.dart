@@ -3,6 +3,9 @@ import 'package:hajat_mobile_app/src/domain/repositories/theme_repository.dart';
 import 'package:hajat_mobile_app/src/featrues/Cart/logic/cart_cubit.dart';
 import 'package:hajat_mobile_app/src/featrues/app/cubit/cubit/theme_cubit.dart';
 import 'package:hajat_mobile_app/src/featrues/auth/logic/auth_cubit.dart';
+import 'package:hajat_mobile_app/src/featrues/banners/logic/cubit/banner_cubit.dart';
+import 'package:hajat_mobile_app/src/featrues/brands/logic/cubit/brands_cubit.dart';
+import 'package:hajat_mobile_app/src/featrues/categories/logic/categories_cubit.dart';
 import 'package:hajat_mobile_app/src/services/api/api_service.dart';
 import 'package:hajat_mobile_app/src/services/dio/append_token_interceptor.dart';
 import 'package:hajat_mobile_app/src/services/dio/dio_factory.dart';
@@ -28,4 +31,9 @@ void setupGetIt() {
   getIt.registerLazySingleton<Log>(() => Log());
 
   getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
+
+  getIt.registerLazySingleton<BannersCubit>(() => BannersCubit());
+
+  getIt.registerLazySingleton<BrandsCubit>(() => BrandsCubit());
+  getIt.registerLazySingleton<CategoriesCubit>(() => CategoriesCubit());
 }
