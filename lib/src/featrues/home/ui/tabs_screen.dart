@@ -19,7 +19,10 @@ class TabsScreen extends StatelessWidget {
     return AutoTabsRouter(
       routes: const [
         ExploreRoute(),
+        // SearchRoute(),
         AccountRoute(),
+        CartRoute(),
+        OrdersRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
@@ -38,7 +41,8 @@ class TabsScreen extends StatelessWidget {
                   builder: (context) {
                     return AlertDialog(
                       title: const Text("Guest User"),
-                      content: const Text("Please login or register to access this feature."),
+                      content: const Text(
+                          "Please login or register to access this feature."),
                       actions: [
                         TextButton(
                           onPressed: () {
@@ -115,7 +119,8 @@ class TabsScreen extends StatelessWidget {
                               top: 0,
                               child: Badge(
                                 label: Text(cart.length.toString()),
-                                backgroundColor: Theme.of(context).colorScheme.primary,
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.primary,
                                 textStyle: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -150,7 +155,8 @@ class TabsScreen extends StatelessWidget {
                               top: 0,
                               child: Badge(
                                 label: Text(cart.length.toString()),
-                                backgroundColor: Theme.of(context).colorScheme.primary,
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.primary,
                                 textStyle: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),

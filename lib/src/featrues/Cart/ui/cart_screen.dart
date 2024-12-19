@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:hajat_mobile_app/src/featrues/Cart/logic/cart_states.dart';
 import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 import 'package:heroicons/heroicons.dart';
 
+@RoutePage()
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
@@ -16,7 +18,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-       context.read<CartCubit>().getCart();
+        context.read<CartCubit>().getCart();
       },
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -98,11 +100,10 @@ class CartScreen extends StatelessWidget {
                               child: ListTile(
                                 title: Text(
                                   'Address',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium,
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
-                                subtitle: const Text('Add your delivery address'),
+                                subtitle:
+                                    const Text('Add your delivery address'),
                                 leading: const HeroIcon(
                                   HeroIcons.informationCircle,
                                 ),
@@ -113,13 +114,11 @@ class CartScreen extends StatelessWidget {
                                   child: const Text('Add Location'),
                                 ),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(
-                                          Consts.borderRadiusM),
+                                  borderRadius: BorderRadius.circular(
+                                      Consts.borderRadiusM),
                                   side: BorderSide(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .secondary,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                   ),
                                 ),
                               ),
@@ -142,7 +141,7 @@ class CartScreen extends StatelessWidget {
                 );
               },
               orElse: () => const Center(
-                  child: Text('No Data Available'),
+                child: Text('No Data Available'),
               ),
             );
           },

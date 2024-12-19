@@ -19,6 +19,7 @@ import 'package:hajat_mobile_app/src/featrues/orders/ui/order_details_screen.dar
 import 'package:hajat_mobile_app/src/featrues/orders/ui/orders_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/products/models/product.dart';
 import 'package:hajat_mobile_app/src/featrues/products/ui/product_details_screen.dart';
+import 'package:hajat_mobile_app/src/featrues/Cart/ui/cart_screen.dart';
 
 part 'router.gr.dart';
 
@@ -38,10 +39,10 @@ class AppRouter extends RootStackRouter {
               page: OrdersRoute.page,
               path: 'orders',
             ),
-            // AutoRoute(
-            //   page: CartRoute.page,
-            //   path: 'cart',
-            // ),
+            AutoRoute(
+              page: CartRoute.page,
+              path: 'cart',
+            ),
             AutoRoute(
               page: AccountRoute.page,
               path: 'account',
