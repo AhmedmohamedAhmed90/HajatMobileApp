@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hajat_mobile_app/src/featrues/categories/logic/cubit/sub_categories_cubit.dart';
 import 'package:hajat_mobile_app/src/featrues/categories/models/category.dart';
 import 'package:hajat_mobile_app/src/featrues/products/ui/products.dart';
-
 import '../../app/ui/widgets/error_card.dart';
 
 @RoutePage()
@@ -18,20 +17,26 @@ class CategoryDetailsScreen extends StatefulWidget {
 
 class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
   late Products products;
+  late SubCategoriesCubit subCategoriesCubit;
 
   @override
   void initState() {
-    products = Products(
-       categoryId: widget.category.id,
-    );
     super.initState();
+    products = Products(categoryId: widget.category.id);
+    subCategoriesCubit = SubCategoriesCubit(widget.category.id);
+  }
+
+  @override
+  void dispose() {
+    subCategoriesCubit.close();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<SubCategoriesCubit, SubCategoriesState>(
-        bloc: SubCategoriesCubit(widget.category.id.toString()),
+        bloc: subCategoriesCubit,
         builder: (context, state) {
           return state.maybeWhen(
             loaded: (categories) {
@@ -42,31 +47,28 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                     title: Text(widget.category.name),
                     bottom: TabBar(
                       isScrollable: true,
-                      // labelPadding: const EdgeInsets.symmetric(horizontal: 0),
                       tabAlignment: TabAlignment.start,
                       tabs: [
-                        const Tab(
-                          text: 'All', // Replaced with static text 'All'
-                        ),
-                        ...categories.map((e) => Tab(text: e.name)).toList(),
+                        const Tab(text: 'All'),
+                        ...categories.map((category) => Tab(text: category.name)),
                       ],
                     ),
                   ),
                   body: TabBarView(
                     children: [
                       products,
-                      ...categories
-                          .map((e) => Products(
-                                categoryId: e.id,
-                              ))
-                          .toList()
+                      ...categories.map((category) => Products(
+                            categoryId: category.id,
+                          )),
                     ],
                   ),
                 ),
               );
             },
             error: (message) => ErrorCard(message: message),
-            orElse: () => const Center(child: CircularProgressIndicator()),
+            orElse: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         },
       ),

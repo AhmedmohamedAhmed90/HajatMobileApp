@@ -1,28 +1,12 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hajat_mobile_app/src/featrues/brands/models/brand.dart';
-
 import '../../categories/models/category.dart';
-
 
 part 'product.freezed.dart';
 part 'product.g.dart';
 
 @freezed
 class Product with _$Product {
-  /*
-    {
-        "id": 3,
-        "name": "Mars",
-        "list_price": 3,
-        "qty_available": 6,
-        "image": "https://odoo.hajat.com.ly/api/product/3/image",
-        "brand_name": "Mars",
-        "category_name": "شوكولاتة"
-    },
-    }
-
-   */
   const factory Product({
     required int id,
     required String name,
@@ -34,7 +18,33 @@ class Product with _$Product {
     required int productVariantId,
   }) = _Product;
   
+  static int _parseId(dynamic value) {
+    if (value is String) {
+      return int.parse(value);
+    } else if (value is int) {
+      return value;
+    }
+    throw FormatException('Invalid ID format');
+  }
 
-  factory Product.fromJson(Map<String, dynamic> json) =>
-      _$ProductFromJson(json);
+  static double _parseDouble(dynamic value) {
+    if (value is String) {
+      return double.parse(value);
+    } else if (value is int) {
+      return value.toDouble();
+    } else if (value is double) {
+      return value;
+    }
+    throw FormatException('Invalid number format');
+  }
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return _$ProductFromJson({
+      ...json,
+      'id': _parseId(json['id']),
+      'listPrice': _parseDouble(json['list_price']),
+      'qtyAvailable': _parseId(json['qty_available']),
+      'productVariantId': _parseId(json['product_variant_id']),
+    });
+  }
 }

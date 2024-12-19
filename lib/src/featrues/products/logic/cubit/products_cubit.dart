@@ -15,6 +15,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   ) : super(const ProductsState.initial()) {
     loadProducts(categoryId, brandId, query);
   }
+  
   final int? categoryId;
   final int? brandId;
   final String? query;
@@ -22,22 +23,30 @@ class ProductsCubit extends Cubit<ProductsState> {
   void loadProducts(int? categoryId, int? brandId, String? q) async {
     try {
       emit(const ProductsState.loading());
-      var response = await getIt<ApiService>().getProducts(categoryId, brandId, q);
-      if (response.statusCode != null &&
-          response.statusCode! >= 200 &&
-          response.statusCode! < 300) {
-      } else {
-        
-        throw Exception(response.statusMessage);
+      final response = await getIt<ApiService>().getProducts(categoryId, brandId, q);
+      
+      if (response.statusCode == null || 
+          response.statusCode! < 200 || 
+          response.statusCode! >= 300) {
+        throw Exception(response.statusMessage ?? 'Unknown error occurred');
       }
-      List<Product> products = [];
-      for (var product in response.data) {
-        var _product = Product.fromJson(product);
-        products.add(_product);
+
+      if (response.data == null) {
+        throw Exception('No data received from server');
       }
+
+      final List<Product> products = (response.data as List).map((productData) {
+        try {
+          return Product.fromJson(Map<String, dynamic>.from(productData));
+        } catch (e) {
+          print('Error parsing product: $e');
+          rethrow;
+        }
+      }).toList();
+
       emit(ProductsState.loaded(products));
     } catch (e) {
-  
+      print('Error loading products: $e');
       emit(ProductsState.error(e.toString()));
     }
   }
