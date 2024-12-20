@@ -20,6 +20,7 @@ import 'package:hajat_mobile_app/src/featrues/orders/ui/orders_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/products/models/product.dart';
 import 'package:hajat_mobile_app/src/featrues/products/ui/product_details_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/Cart/ui/cart_screen.dart';
+import 'package:hajat_mobile_app/src/featrues/search/ui/search_screen.dart';
 
 part 'router.gr.dart';
 
@@ -34,6 +35,10 @@ class AppRouter extends RootStackRouter {
             AutoRoute(
               page: ExploreRoute.page,
               path: 'explore',
+            ),
+            AutoRoute(
+              page: SearchRoute.page,
+              path: 'search',
             ),
             AutoRoute(
               page: OrdersRoute.page,

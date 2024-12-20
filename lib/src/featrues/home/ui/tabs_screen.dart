@@ -19,7 +19,7 @@ class TabsScreen extends StatelessWidget {
     return AutoTabsRouter(
       routes: const [
         ExploreRoute(),
-        // SearchRoute(),
+        SearchRoute(),
         AccountRoute(),
         CartRoute(),
         OrdersRoute(),

@@ -319,40 +319,50 @@ class ApiService {
   }
 
   Future<Response> getProducts(int? categoryId, int? brandId, String? q) async {
-    // build the query string based on the parameters
-    String url = '/api/products';
+  try {
+    // Build query parameters
+    final Map<String, String> queryParams = {};
+    
     if (categoryId != null) {
-      url += '?category=$categoryId';
+      queryParams['category'] = categoryId.toString();
     }
     if (brandId != null) {
-      url += '?brand=$brandId';
+      queryParams['brand'] = brandId.toString();
     }
-    if (q != null) {
-      url += '?search=$q';
+    if (q != null && q.trim().isNotEmpty) {
+      queryParams['search'] = q.trim().toLowerCase();
     }
 
-    try {
-      var response = await dio.request(
-        url,
-        options: Options(
-          method: 'GET',
-        ),
-      );
+    // Make the request using queryParameters
+    final response = await dio.get(
+      '/api/products',
+      queryParameters: queryParams,
+      options: Options(
+        method: 'GET',
+        validateStatus: (status) {
+          return status != null && status < 500;
+        },
+      ),
+    );
 
-      if (response.statusCode != null &&
-          response.statusCode! >= 200 &&
-          response.statusCode! < 300) {
-        getIt<Log>().info(json.encode(response.data));
-      } else {
-        getIt<Log>().warn(response.data);
-        throw Exception(response.data);
-      }
+    // Handle response
+    if (response.statusCode != null &&
+        response.statusCode! >= 200 &&
+        response.statusCode! < 300) {
+      getIt<Log>().info('Products fetched successfully');
       return response;
-    } catch (e) {
-      getIt<Log>().error(e.toString());
-      rethrow;
+    } else {
+      final errorMessage = response.data is Map ? 
+          response.data['error'] ?? 'Unknown error' : 
+          'Error fetching products';
+      getIt<Log>().warn('API Error: $errorMessage');
+      throw Exception(errorMessage);
     }
+  } catch (e) {
+    getIt<Log>().error('Product fetch error: ${e.toString()}');
+    rethrow;
   }
+}
 
   Future<Response> getBrands() async {
     try {

@@ -107,9 +107,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                           ],
                         ),
-
                         Consts.gapM,
-
                         Wrap(
                           spacing: 8,
                           children: [
@@ -198,6 +196,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         onPressed: () {
                           getIt<CartCubit>()
                               .addToCart(widget.product, quantity);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content:
+                                  Text('${widget.product.name} added to cart!'),
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
                           context.router.maybePop();
                         },
                       ),
