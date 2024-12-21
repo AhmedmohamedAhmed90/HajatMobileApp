@@ -25,7 +25,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.product.name),
+        title: Text(
+          widget.product.name,
+          overflow: TextOverflow.ellipsis, // Prevent overflow in the app bar title
+        ),
       ),
       body: SizedBox(
         width: double.infinity,
@@ -62,7 +65,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   Consts.gapM,
 
                   // Title & Price
-
                   Padding(
                     padding: Consts.paddingM,
                     child: Column(
@@ -70,14 +72,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       children: [
                         Row(
                           children: [
-                            Text(
-                              widget.product.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall!
-                                  .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                            Expanded(
+                              child: Text(
+                                widget.product.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall!
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                overflow: TextOverflow.ellipsis, // Handle overflow
+                                maxLines: 1, // Limit to one line
+                              ),
                             ),
                             Container(
                               margin: Consts.paddingHS,
@@ -103,6 +109,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
+                                overflow: TextOverflow.ellipsis, // Handle overflow
                               ),
                             ),
                           ],
@@ -112,13 +119,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           spacing: 8,
                           children: [
                             Chip(
-                              label: Text(widget.product.category.name),
+                              label: Text(
+                                widget.product.category.name,
+                                overflow: TextOverflow.ellipsis, // Handle overflow
+                                maxLines: 1,
+                              ),
                             ),
-                            Chip(label: Text(widget.product.brand.name)),
+                            Chip(
+                              label: Text(
+                                widget.product.brand.name,
+                                overflow: TextOverflow.ellipsis, // Handle overflow
+                                maxLines: 1,
+                              ),
+                            ),
                             if (widget.product.qtyAvailable != 0)
                               Chip(
-                                  label: Text(
-                                      "Available: ${widget.product.qtyAvailable} pieces")),
+                                label: Text(
+                                  "Available: ${widget.product.qtyAvailable} pieces",
+                                  overflow: TextOverflow.ellipsis, // Handle overflow
+                                  maxLines: 1,
+                                ),
+                              ),
                           ],
                         ),
                       ],
@@ -149,7 +170,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // quantity controller
+                        // Quantity controller
                         Container(
                           decoration: BoxDecoration(
                             borderRadius:
@@ -168,7 +189,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   });
                                 },
                               ),
-                              Text(quantity.toString()),
+                              Text(
+                                quantity.toString(),
+                                overflow: TextOverflow.ellipsis, // Handle overflow
+                              ),
                               IconButton(
                                 icon: const Icon(Icons.add),
                                 onPressed: () {
@@ -181,10 +205,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ),
 
-                        // total price
-                        Text(
-                          "${(widget.product.listPrice * quantity).toStringAsFixed(2)} USD",
-                          style: Theme.of(context).textTheme.titleLarge,
+                        // Total price
+                        Expanded(
+                          child: Text(
+                            "${(widget.product.listPrice * quantity).toStringAsFixed(2)} USD",
+                            style: Theme.of(context).textTheme.titleLarge,
+                            overflow: TextOverflow.ellipsis, // Handle overflow
+                          ),
                         ),
                       ],
                     ),
