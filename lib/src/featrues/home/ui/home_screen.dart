@@ -8,6 +8,7 @@ import 'package:hajat_mobile_app/src/featrues/home/ui/tabs_screen.dart';
 import 'package:hajat_mobile_app/src/featrues/splash/ui/splash_screen.dart';
 import 'package:hajat_mobile_app/src/services/locator/get_it.dart';
 import 'package:hajat_mobile_app/src/services/logging/log.dart';
+import 'package:hajat_mobile_app/src/featrues/app/cubit/cubit/theme_cubit.dart';
 
 @RoutePage()
 class MyHomePage extends StatelessWidget {
@@ -22,17 +23,10 @@ class MyHomePage extends StatelessWidget {
           error: (message) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(
-                  message,
-                ),
-                
+                content: Text(message),
               ),
             );
-
-
             getIt<Log>().error(message);
-            // navigate to error screen
-            // context.router.push(ErrorRoute(message: message));
           },
           authenticated: (session) {
             // check if the user doesn't have an address then navigate to address screen
@@ -41,7 +35,7 @@ class MyHomePage extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        return state.maybeWhen(
+        Widget currentScreen = state.maybeWhen(
           authenticated: (auth) {
             return const TabsScreen();
           },
@@ -56,7 +50,6 @@ class MyHomePage extends StatelessWidget {
               isGuest: true,
             );
           },
-
           loading: () {
             return const LoadingScreen();
           },
@@ -64,8 +57,31 @@ class MyHomePage extends StatelessWidget {
             return AuthScreen(
               isLogin: false,
             );
-           
           },
+        );
+        
+        // Wrap the current screen with Scaffold to add AppBar
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Hajat'),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Theme.of(context).brightness == Brightness.light 
+                    ? Icons.dark_mode_outlined 
+                    : Icons.light_mode_outlined
+                ),
+                onPressed: () {
+                  ThemeCubit.instance.updateTheme(
+                    Theme.of(context).brightness == Brightness.light 
+                      ? ThemeMode.dark 
+                      : ThemeMode.light
+                  );
+                },
+              ),
+            ],
+          ),
+          body: currentScreen,
         );
       },
     );

@@ -7,15 +7,15 @@ class ThemeRepository {
   static const _kThemePersistenceKey = 'themeMode';
 
   saveTheme(ThemeMode themeMode) async {
-    final sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString(_kThemePersistenceKey, themeMode.name);
+    if (themeMode != ThemeMode.system) {
+      final sharedPreferences = await SharedPreferences.getInstance();
+      await sharedPreferences.setString(_kThemePersistenceKey, themeMode.name);
+    }
   }
 
   Future<ThemeMode> loadFromPrefs() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     switch (sharedPreferences.getString(_kThemePersistenceKey)) {
-      case 'system':
-        return ThemeMode.system;
       case 'light':
         return ThemeMode.light;
       case 'dark':
